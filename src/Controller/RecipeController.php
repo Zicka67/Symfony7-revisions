@@ -25,6 +25,7 @@ class RecipeController extends AbstractController
         // return new JsonResponse([
         //     'slug' => $slug
         // ]);
+        
         return new Response('Recette des : ' . $slug);
     }
 }
