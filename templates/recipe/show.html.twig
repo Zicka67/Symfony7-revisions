@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{# Simplification d'un bloc twig, ici pour afficher le slug de la recette dans l'onglet #}
+{% block title "Recette: " ~ slug %}
+
+{% block body %}
+
+    {{ slug }}
+
+{% endblock %}

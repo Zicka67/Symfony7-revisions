@@ -27,6 +27,10 @@ class RecipeController extends AbstractController
         //     'slug' => $slug
         // ]);
         
-        return new Response('Recette des : ' . $slug);
+        // return new Response('Recette des : ' . $slug);
+        return $this->render('recipe/show.html.twig', [
+            'slug' => $slug,
+            'id' => $id
+        ]);
     }
 }
