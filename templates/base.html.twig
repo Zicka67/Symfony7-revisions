@@ -16,21 +16,22 @@
     </head>
     <body>
 
-        <ul class="nav">
+        <ul class="nav navbar navbar-expand-lg">
          
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ url('home') }}">NomDuSite</a>
+                    <a class="nav-link active" href="{{ path('home') }}">NomDuSite</a>
                 </li>
             <div class="nav-center">
                 <li class="nav-item">
-                <a class="nav-link" href="{{ url('recipe.index') }}">Recette</a>
+                    <a class="nav-link" href="{{ path('home') }}">Accueil</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="{{ path('recipe.index') }}">Recettes</a>
                 </li>
-            {# <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li> #}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+
             </div>
           </ul>
 

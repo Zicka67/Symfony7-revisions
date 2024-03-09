@@ -7,9 +7,19 @@
 <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Voici mes recettes</h1>
 
 <div class="pasta-container" style="display: flex; flex-direction: column">
-    <a href="">Pate Bolo</a>
-    <a href="">Pate Carbo</a>
-    <a href="">Pate Pesto</a>
+
+    <ul>
+        <li>
+            <a href="{{ path('recipe.show', {id: 32, slug: 'pate-bolognaise'}) }}">Pate Bolo</a>
+        </li>
+        <li>
+            <a href="">Pate Carbo</a>
+        </li>
+        <li>
+            <a href="">Pate Pesto</a>
+        </li>
+    </ul>
+
 </div>
 
 {% endblock %}
