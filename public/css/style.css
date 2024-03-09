@@ -1,0 +1,9 @@
+.nav {
+    background-color: bisque;
+}
+
+.nav-center {
+    display: flex;
+    margin: 0 auto;
+    width: 500px;
+}
