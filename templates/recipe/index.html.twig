@@ -9,15 +9,11 @@
 <div class="pasta-container" style="display: flex; flex-direction: column">
 
     <ul>
+        {% for recipe in recipes %}
         <li>
-            <a href="{{ path('recipe.show', {id: 32, slug: 'pate-bolognaise'}) }}">Pate Bolo</a>
+            <a href="{{ path('recipe.show', {id: recipe.id, slug: recipe.slug}) }}">{{recipe.title}}</a>
         </li>
-        <li>
-            <a href="">Pate Carbo</a>
-        </li>
-        <li>
-            <a href="">Pate Pesto</a>
-        </li>
+        {% endfor %}
     </ul>
 
 </div>
