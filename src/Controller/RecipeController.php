@@ -2,24 +2,45 @@
 
 namespace App\Controller;
 
+use App\Entity\Recipe;
+use Doctrine\ORM\EntityManager;
 use App\Repository\RecipeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RecipeController extends AbstractController
 {
 
     #[Route('/recette', name: 'recipe.index')]
-    public function index(Request $request, RecipeRepository $repository): Response
+    public function index(Request $request, RecipeRepository $repository, EntityManagerInterface $em): Response
     {
-        $recipes = $repository->findAll();
-        // dd($recipes);
+        $recipes = $repository->findWithDurationLowerThan(20);
+        $recipeTotalDuration = $repository->findTotalDuration();
+
+        // **Créer**
+        // $recipe = new Recipe();
+        // $recipe->setTitle('Risotto')
+        //     ->setSlug('risotto')
+        //     ->setContent('dzdq')
+        //     ->setDuration(18)
+        //     ->setCreatedAt(new \DateTimeImmutable())
+        //     ->setUpdatedAt(new \DateTimeImmutable());
+        // $em->persist($recipe);
+        // $em->flush();
+
+        // **Supprimer**
+        // $em->remove($recipes[0]);
+        // $em->flush();
+        
+        // dd($repository->findTotalDuration());
         // return new Response('Recette');
         return $this->render('recipe/index.html.twig', [
-            'recipes' => $recipes
+            'recipes' => $recipes,
+            'recipeTotalDuration' => $recipeTotalDuration
         ]);
     }
 
