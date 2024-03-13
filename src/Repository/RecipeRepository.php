@@ -23,8 +23,8 @@ class RecipeRepository extends ServiceEntityRepository
 
     public function findTotalDuration()
     {
-        return $this->createQueryBuilder('r')
-            ->select('SUM(r.duration) as total')
+        return $this->createQueryBuilder('recipe')
+            ->select('SUM(recipe.duration) as total')
             ->getQuery()
             ->getResult();
     }
@@ -34,15 +34,14 @@ class RecipeRepository extends ServiceEntityRepository
     */
     public function findWithDurationLowerThan(int $duration)
     {
-        return $this->createQueryBuilder('r')
-            ->where('r.duration <= :duration')
-            ->orderBy('r.duration', 'ASC')
+        return $this->createQueryBuilder('recipe')
+            ->where('recipe.duration <= :duration')
+            ->orderBy('recipe.duration', 'ASC')
             ->setMaxResults(10)
             ->setParameter('duration', $duration)
             ->getQuery()
             ->getResult();
     }
-
 
     //    /**
     //     * @return Recipe[] Returns an array of Recipe objects
