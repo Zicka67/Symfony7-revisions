@@ -6,7 +6,7 @@ Gérer les contraintes :
 php bin/console make:validator
 
 Dans le fichier créer par make:validator .php->
-  class BanWord extends Constraint                                                                       
+                                                                      
 {
     public function __construct(
         public string $message = 'This contains a banned word "{{ banWord }}".', 
@@ -20,6 +20,7 @@ Dans le fichier créer par make:validator .php->
 }
 
 Dans le 2ième fichier créer par make:validator Validator.php->
+
 public function validate($value, Constraint $constraint)
     {
         /* @var BanWord $constraint */
