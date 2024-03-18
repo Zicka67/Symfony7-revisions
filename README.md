@@ -1,8 +1,8 @@
 <h1>Nouveau projet pour tester Symfony 7 et révisions des bases</h1>
 
-Site pour construire les regex plus facilement et rapidement : https://ihateregex.io/
+- Site pour construire les regex plus facilement et rapidement : https://ihateregex.io/
 
-Gérer les contraintes :
+- Gérer les contraintes :
 php bin/console make:validator
 
 Dans le fichier créer par make:validator .php->
