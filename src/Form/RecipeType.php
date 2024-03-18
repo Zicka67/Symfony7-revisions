@@ -24,10 +24,10 @@ class RecipeType extends AbstractType
             ])
             ->add('slug', TextType::class, [
                 'required' => false,
-                'constraints' => [
-                    new Length(min: 10),
-                    new Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/')
-                    ]
+                // 'constraints' => [
+                //     new Length(min: 10),
+                //     new Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/')
+                //     ]
             ])
             ->add('content', TextType::class, [
                 'label' => 'Descriptif'
