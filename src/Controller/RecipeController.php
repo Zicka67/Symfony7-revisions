@@ -18,28 +18,11 @@ class RecipeController extends AbstractController
 {
 
     #[Route('/recette', name: 'recipe.index')]
-    public function index(Request $request, RecipeRepository $repository, EntityManagerInterface $em): Response
+    public function index(RecipeRepository $repository): Response
     {
         $recipes = $repository->findWithDurationLowerThan(20);
         $recipeTotalDuration = $repository->findTotalDuration();
 
-        // **Créer**
-        // $recipe = new Recipe();
-        // $recipe->setTitle('Risotto')
-        //     ->setSlug('risotto')
-        //     ->setContent('dzdq')
-        //     ->setDuration(18)
-        //     ->setCreatedAt(new \DateTimeImmutable())
-        //     ->setUpdatedAt(new \DateTimeImmutable());
-        // $em->persist($recipe);
-        // $em->flush();
-
-        // **Supprimer**
-        // $em->remove($recipes[0]);
-        // $em->flush();
-        
-        // dd($repository->findTotalDuration());
-        // return new Response('Recette');
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes,
             'recipeTotalDuration' => $recipeTotalDuration
@@ -49,11 +32,7 @@ class RecipeController extends AbstractController
     #[Route('/recette/{slug}-{id}', name: 'recipe.show', requirements: ['id' => '\d+', 'slug'=> '[a-z0-9-]+'])]
     public function show(Request $request, string $slug, int $id, RecipeRepository $repository): Response
     {
-        // dd($request->attributes->get('slug'), $request->attributes->get('id'));
-        // dd($slug, $id);
-        // return new JsonResponse([
-        //     'slug' => $slug
-        // ]);
+    
         $recipe = $repository->find($id);
         if($recipe->getSlug() != $slug) {
             return $this->redirectToRoute('recipe.show', ['slug' => $recipe->getSlug(), 'id' => $recipe->getId() ]);
