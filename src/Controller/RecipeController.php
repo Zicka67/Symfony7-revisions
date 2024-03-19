@@ -30,7 +30,7 @@ class RecipeController extends AbstractController
     }
 
     #[Route('/recette/{slug}-{id}', name: 'recipe.show', requirements: ['id' => '\d+', 'slug'=> '[a-z0-9-]+'])]
-    public function show(Request $request, string $slug, int $id, RecipeRepository $repository): Response
+    public function show(string $slug, int $id, RecipeRepository $repository): Response
     {
     
         $recipe = $repository->find($id);
@@ -45,7 +45,7 @@ class RecipeController extends AbstractController
     }
 
     #[Route('/recette/{id}/edit', name: 'recipe.edit', methods: ['GET', 'POST'])]
-    public function edit(RecipeRepository $repository, Recipe $recipe, Request $request, EntityManagerInterface $em): Response
+    public function edit(Recipe $recipe, Request $request, EntityManagerInterface $em): Response
     {
   
         $form = $this->createForm(RecipeType::class, $recipe);

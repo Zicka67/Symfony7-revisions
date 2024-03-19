@@ -6,6 +6,7 @@ use App\Entity\Recipe;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,7 +21,8 @@ class RecipeType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Titre'
+                'label' => 'Titre',
+                'empty_data' => ''
             ])
             ->add('slug', TextType::class, [
                 'required' => false,
@@ -29,8 +31,9 @@ class RecipeType extends AbstractType
                 //     new Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/')
                 //     ]
             ])
-            ->add('content', TextType::class, [
-                'label' => 'Descriptif'
+            ->add('content', TextareaType::class, [
+                'label' => 'Descriptif',
+                'empty_data' => ''
             ])
             // ->add('createdAt', null, [
             //     'widget' => 'single_text',
