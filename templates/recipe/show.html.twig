@@ -1,17 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{# Simplification d'un bloc twig, ici pour afficher le slug de la recette dans l'onglet #}
-{% block title "Recette: " ~ recipe.slug %}
+{% block title %}Mes recettes{% endblock %}
 
 {% block body %}
 
-<h1>{{ recipe.title }}</h1>
+<div class="mt-5">
+    {% for recipe in recipes %}
 
-<p>
-    {{ recipe.content | nl2br}}
-</p>
+    <tr>
+        <td>
+            <div class="d-flex gap-1">
+                <a href="{{ path('recipe.detail', {'slug': recipe.slug}) }}">{{ recipe.title | nl2br }}</a>
+            </div>
+        </td>
+    </tr>
 
-<strong>Temps de la recette :  {{ recipe.duration }} min</strong>
+    {% endfor %}
+</div>
 
+    <td>
+        <h5 class="mt-5">Temps total des recettes : {{ recipeTotalDuration[0].total }} min</h5>
+    </td>
 
 {% endblock %}

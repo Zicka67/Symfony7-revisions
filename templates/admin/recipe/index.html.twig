@@ -1,15 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin.html.twig' %}
 
 {% block title %}Mes recettes{% endblock %}
 
 {% block body %}
 
-<h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Voici mes recettes</h1>
-
 <div class="pasta-container" style="display: flex; flex-direction: column">
 
     <p>
-        <a class="btn btn-primary btn-sm" href="{{ path('recipe.create') }}">Créer une recette</a>
+        <a class="btn btn-primary btn-sm" href="{{ path('admin.recipe.create') }}">Créer une recette</a>
     </p>
 
     <table>
@@ -23,12 +21,12 @@
         {% for recipe in recipes %}
             <tr>
                 <td>
-                    <a href="{{ path('recipe.show', {id: recipe.id, slug: recipe.slug}) }}">{{recipe.title}}</a>
+                    <a href="{{ path('admin.recipe.edit', {id: recipe.id}) }}">{{recipe.title}}</a>
                 </td>
                 <td>
                     <div class="d-flex gap-1">
-                        <a class="btn btn-primary btn-sm" href="{{ path('recipe.edit', {id: recipe.id}) }}">Modifier</a>
-                    <form action="{{ path('recipe.delete', {id: recipe.id}) }}" method="post">
+                        <a class="btn btn-primary btn-sm" href="{{ path('admin.recipe.edit', {id: recipe.id}) }}">Modifier</a>
+                    <form action="{{ path('admin.recipe.delete', {id: recipe.id}) }}" method="post">
                         <input type="hidden" name="_method" value="DELETE">  
                         <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                     </form>

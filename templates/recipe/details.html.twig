@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{# {% block title "Recette" ~ {{ recipe.slug }}%} #}
+
+{% block body %}
+
+<div class="mt-5">
+   
+
+    <tr>
+        <td>
+            <div class="d-flex gap-1">
+               <strong> <h2>{{recipe.title | nl2br}}</h2> </strong>   
+                <p class="mt-2">{{recipe.content | nl2br}}</p>
+            </div>
+        </td>
+    </tr>
+
+</div>
+
+    <td>
+        <h5 class="mt-5">Temps total de cette recette : <strong>{{ recipe.duration }} min</strong></h5>
+    </td>
+
+{% endblock %}
