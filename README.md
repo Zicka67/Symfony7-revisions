@@ -5,6 +5,15 @@
 - Gérer les contraintes :
 php bin/console make:validator
 
+RECETTES:
+![Capture d'écran du projet](https://github.com/Zicka67/Symfony7-revisions/blob/main/public/img/1.png)
+
+CONTACT:
+![Capture d'écran du projet](https://github.com/Zicka67/Symfony7-revisions/blob/main/public/img/2.png)
+
+ADMIN :
+![Capture d'écran du projet](https://github.com/Zicka67/Symfony7-revisions/blob/main/public/img/3.png)
+
 Dans le fichier créer par make:validator .php->
 Bien penser à mettre les mots ban dans le tableau et le parent du construct
                                                                       
