@@ -11,7 +11,7 @@ RECETTES:
 CONTACT:
 ![Capture d'écran du projet](https://github.com/Zicka67/Symfony7-revisions/blob/main/public/img/2.png)
 
-ADMIN :
+ADMIN sans EasyAdmin:
 ![Capture d'écran du projet](https://github.com/Zicka67/Symfony7-revisions/blob/main/public/img/3.png)
 
 Dans le fichier créer par make:validator .php->
