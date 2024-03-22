@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Dans la catégorie : " ~ categoryDetails.name %}
+
+{% block body %}
+
+<div class="mt-5">
+
+    <tr>
+        <td>
+            <div class="d-flex gap-1">
+               <strong> <h2>{{categoryDetails.name | nl2br}}</h2> </strong>   
+            </div>
+        </td>
+    </tr>
+
+</div>
+
+{% endblock %}

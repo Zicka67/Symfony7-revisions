@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\RecipeRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -21,11 +22,13 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig');
     }
 
+    //******* RECETTE *******
     #[Route('/recettes', name: 'show')]
     public function show(RecipeRepository $repository): Response
     {
     
         $recipe = $repository->findAll();
+        
         $recipeTotalDuration = $repository->findTotalDuration();
         // dd($recipe);
         
@@ -48,6 +51,35 @@ class HomeController extends AbstractController
         
         return $this->render('recipe/details.html.twig', [
             'recipe' => $recipe
+        
+        ]);
+    }
+
+     //******* CATEGORIE *******
+    #[Route('/category', name: 'category.index')]
+    public function indexCategory(CategoryRepository $repository): Response
+    {
+
+        $category = $repository->findAll();
+
+        return $this->render('category/index.html.twig', [
+            'controller_name' => 'CategoryController',
+            'categories' => $category
+        ]);
+    }
+
+    #[Route('/category/{slug}', name: 'category.detail')]
+    public function detailsCategory(string $slug, CategoryRepository $repository): Response
+    {
+    
+        $categoryDetails = $repository->findOneBy(['slug' => $slug]);
+        
+        if (!$categoryDetails) {
+            throw $this->createNotFoundException('La catégorie demandée n\'existe pas.');
+        }
+        
+        return $this->render('category/details.html.twig', [
+            'categoryDetails' => $categoryDetails
         
         ]);
     }
