@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\RecipeRepository;
 use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -69,17 +70,25 @@ class HomeController extends AbstractController
     }
 
     #[Route('/category/{slug}', name: 'category.detail')]
-    public function detailsCategory(string $slug, CategoryRepository $repository): Response
+    public function detailsCategory(string $slug, CategoryRepository $categoryRepository, EntityManagerInterface $em, RecipeRepository $recipeRepository): Response
     {
+        $platPrincipal = $categoryRepository->findOneBy(['slug' => 'plats']);
+        $category = $categoryRepository->findOneBy(['slug' => $slug]);
     
-        $categoryDetails = $repository->findOneBy(['slug' => $slug]);
-        
-        if (!$categoryDetails) {
+        if (!$category) {
             throw $this->createNotFoundException('La catégorie demandée n\'existe pas.');
         }
         
+        //GetRecipes pour accéder a la collection de recettes dans category ( OneToMany )
+        $recipes = $category->getRecipes();
+
+        $em->flush();
+    
         return $this->render('category/details.html.twig', [
-            'categoryDetails' => $categoryDetails
+            // 'pates' => $pates,
+            'platPrincipal' => $platPrincipal,
+            'recipes' => $recipes,
+            'category' => $category
         
         ]);
     }
