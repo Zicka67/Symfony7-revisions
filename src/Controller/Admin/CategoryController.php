@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/admin/category', name: 'admin.category.')]
 class CategoryController extends AbstractController
 {
-    #[Route(name: 'index')]
+    #[Route('/', name: 'index')]
     public function index(CategoryRepository $repository): Response
     {
 

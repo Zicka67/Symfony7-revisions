@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Recipe;
 use App\Form\RecipeType;
+use App\Repository\CategoryRepository;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,15 +17,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class RecipeController extends AbstractController
 {
 
-    #[Route(name: 'index')]
-    public function index(RecipeRepository $repository): Response
+    #[Route('/', name: 'index')]
+    public function index(RecipeRepository $recipeRepository, CategoryRepository $categoryRepository, EntityManagerInterface $em): Response
     {
-        $recipes = $repository->findWithDurationLowerThan(20);
-        $recipeTotalDuration = $repository->findTotalDuration();
+        // $platPrincipal = $categoryRepository->findOneBy(['slug' => 'plats']);
+        // $pates = $RecipeRepository->findOneBy(['slug' => 'pates-bolognaise']);
+        // $pates->setCategory($platPrincipal);
+        // $em->flush();
+
+        $recipes = $recipeRepository->findWithDurationLowerThan(20);
+        // $recipeTotalDuration = $recipeRepository->findTotalDuration();
+
+        // dd($recipes[0]->getCategory());
 
         return $this->render('admin/recipe/index.html.twig', [
             'recipes' => $recipes,
-            'recipeTotalDuration' => $recipeTotalDuration
+            // 'recipeTotalDuration' => $recipeTotalDuration,
+            // 'pates' => $pates
         ]);
     }
 
@@ -62,7 +71,7 @@ class RecipeController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'La recette a bien été modifiée');
-            return $this->redirectToRoute('admin/recipe.index');
+            return $this->redirectToRoute('admin.recipe.index');
         }
 
         return $this->render('admin/recipe/edit.html.twig', [
