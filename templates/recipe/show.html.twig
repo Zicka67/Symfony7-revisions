@@ -4,12 +4,14 @@
 
 {% block body %}
 
+<h1>Nos recettes</h1>
+
 <div class="mt-5">
     {% for recipe in recipes %}
 
     <tr>
         <td>
-            <div class="d-flex gap-1">
+            <div class="d-flex gap-1 small-width">
                 <a href="{{ path('recipe.detail', {'slug': recipe.slug}) }}">{{ recipe.title | nl2br }}</a>
             </div>
         </td>

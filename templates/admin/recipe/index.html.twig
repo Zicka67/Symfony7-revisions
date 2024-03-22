@@ -6,11 +6,11 @@
 
 <div class="pasta-container" style="display: flex; flex-direction: column">
 
-    <p>
+    <p class="mt-5">
         <a class="btn btn-primary btn-sm" href="{{ path('admin.recipe.create') }}">Créer une recette</a>
     </p>
 
-    <table>
+    <table class="mt-5">
         <thead>
             <tr>
                 <th>Titre</th>
@@ -24,7 +24,7 @@
                     <a href="{{ path('admin.recipe.edit', {id: recipe.id}) }}">{{recipe.title}}</a>
                 </td>
                 <td>
-                    <div class="d-flex gap-1">
+                    <div class="d-flex gap-1 flex-col">
                         <a class="btn btn-primary btn-sm" href="{{ path('admin.recipe.edit', {id: recipe.id}) }}">Modifier</a>
                     <form action="{{ path('admin.recipe.delete', {id: recipe.id}) }}" method="post">
                         <input type="hidden" name="_method" value="DELETE">  
@@ -37,7 +37,7 @@
         </tbody>
     </table>
 
-    <h5>Temps total des recettes : {{ recipeTotalDuration[0].total }} min</h5>
+    <h5 class="mt-5">Temps total des recettes : {{ recipeTotalDuration[0].total }} min</h5>
 
 </div>
 
