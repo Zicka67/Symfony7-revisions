@@ -14,6 +14,7 @@
         <thead>
             <tr>
                 <th>Titre</th>
+                <th>Catégorie</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -23,6 +24,9 @@
                 <td>
                     <a href="{{ path('admin.recipe.edit', {id: recipe.id}) }}">{{recipe.title}}</a>
                 </td>
+                {# utiliser le filtre twig | default('') ici car toutes les recettes n'ont pas encore de name, donc ca va utiliser
+                paar défaut ( '' )  } #}
+                <td>{{ recipe.category.name | default('') }}</td>
                 <td>
                     <div class="d-flex gap-1 flex-col">
                         <a class="btn btn-primary btn-sm" href="{{ path('admin.recipe.edit', {id: recipe.id}) }}">Modifier</a>
@@ -37,7 +41,7 @@
         </tbody>
     </table>
 
-    <h5 class="mt-5">Temps total des recettes : {{ recipeTotalDuration[0].total }} min</h5>
+    {# <h5 class="mt-5">Temps total des recettes : {{ recipeTotalDuration[0].total }} min</h5> #}
 
 </div>
 
