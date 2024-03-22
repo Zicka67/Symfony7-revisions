@@ -9,14 +9,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Requirement\Requirement;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/recettes', name: 'admin.recipe.')]
 class RecipeController extends AbstractController
 {
 
-    #[Route('/', name: 'index')]
+    #[Route(name: 'index')]
     public function index(RecipeRepository $repository): Response
     {
         $recipes = $repository->findWithDurationLowerThan(20);
@@ -55,10 +55,12 @@ class RecipeController extends AbstractController
   
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()) {
             $recipe->setCreatedAt(new \DateTimeImmutable());
             $recipe->setUpdatedAt(new \DateTimeImmutable());
             $em->flush();
+
             $this->addFlash('success', 'La recette a bien été modifiée');
             return $this->redirectToRoute('admin/recipe.index');
         }
@@ -74,9 +76,9 @@ class RecipeController extends AbstractController
     {
         $em->remove($recipe);
         $em->flush();
-        $this->addFlash('success', 'La recette a bien été suprimée');
 
-        return $this->redirectToRoute('admin/recipe.index');
+        $this->addFlash('success', 'La recette a bien été supprimée');
+        return $this->redirectToRoute('admin.recipe.index');
     }
 
 }

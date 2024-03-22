@@ -5,8 +5,8 @@ namespace App\Entity;
 use App\Repository\RecipeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use App\Validator\BanWord;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
