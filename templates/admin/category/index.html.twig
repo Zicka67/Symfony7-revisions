@@ -6,11 +6,11 @@
 
 <div class="pasta-container" style="display: flex; flex-direction: column">
 
-    <p>
+    <p class="mt-5">
         <a class="btn btn-primary btn-sm" href="{{ path('admin.category.create') }}">Créer une catégorie</a>
     </p>
 
-    <table>
+    <table class="mt-5">
         <thead>
             <tr>
                 <th>Titre</th>
@@ -24,7 +24,7 @@
                     <a href="{{ path('admin.category.edit', {id: category.id}) }}">{{category.name}}</a>
                 </td>
                 <td>
-                    <div class="d-flex gap-1">
+                    <div class="d-flex gap-1 flex-col">
                         <a class="btn btn-primary btn-sm" href="{{ path('admin.category.edit', {id: category.id}) }}">Modifier</a>
                     <form action="{{ path('admin.category.delete', {id: category.id}) }}" method="post">
                         <input type="hidden" name="_method" value="DELETE">  
