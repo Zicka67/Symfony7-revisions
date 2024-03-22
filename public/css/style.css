@@ -16,10 +16,39 @@
 
 }
 
+.d-flex {
+    flex-direction: column;
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: row;
+}
+
 a {
     text-decoration: none;
 }
 
 .nav-link {
     color: rgb(20, 20, 20);
+}
+
+.form-control {
+    width: 300px !important;
+}
+
+.form-select {
+    width: 300px;
+}
+
+.small-width {
+    width: 120px;
+}
+
+.btn-primary {
+    width: 81px;
+}
+
+.btn-sm {
+    width: 150px;
 }
