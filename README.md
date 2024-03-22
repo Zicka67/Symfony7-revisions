@@ -1,4 +1,5 @@
 <h1>Nouveau projet pour tester Symfony 7 et révisions des bases</h1>
+<h2>Entraînements et révisons des fonctionnalitées principales et basiques en utilisant Symfony7, uniquement pour le back</h2>
 
 - Site pour construire les regex plus facilement et rapidement : https://ihateregex.io/
 
