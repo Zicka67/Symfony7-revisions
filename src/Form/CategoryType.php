@@ -21,12 +21,12 @@ class CategoryType extends AbstractType
                 'required' => false,
                 'empty_data' => ''
             ])
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
+            // ->add('createdAt', null, [
+            //     'widget' => 'single_text',
+            // ])
+            // ->add('updatedAt', null, [
+            //     'widget' => 'single_text',
+            // ])
             ->add('save', SubmitType::class, [
                 'label' => 'Envoyer'
             ])
