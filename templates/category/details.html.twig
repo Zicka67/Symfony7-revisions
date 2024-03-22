@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title "Dans la catégorie : " ~ categoryDetails.name %}
+{# {% block title "Dans la catégorie : " ~ categoryDetails.name %} #}
 
 {% block body %}
 
@@ -9,9 +9,18 @@
     <tr>
         <td>
             <div class="d-flex gap-1">
-               <strong> <h2>{{categoryDetails.name | nl2br}}</h2> </strong>   
+               <strong> <h2>Nos plats dans cette catégorie.</h2> </strong>   
             </div>
         </td>
+        {# Boucle sur la collection de recettes #}
+    {% for recipe in recipes %}
+    <div class="d-flex gap-1 mt-5">
+        {# Assurez-vous que 'slug' et 'title' existent dans votre entité Recipe #}
+        <a href="{{ path('recipe.detail', {'slug': recipe.slug }) }}">{{ recipe.title | nl2br }}</a>
+    </div>
+{% else %}
+    <p>Aucune recette n'est disponible dans cette catégorie.</p>
+{% endfor %}
     </tr>
 
 </div>
