@@ -70,9 +70,8 @@ class HomeController extends AbstractController
     }
 
     #[Route('/category/{slug}', name: 'category.detail')]
-    public function detailsCategory(string $slug, CategoryRepository $categoryRepository, EntityManagerInterface $em, RecipeRepository $recipeRepository): Response
+    public function detailsCategory(string $slug, CategoryRepository $categoryRepository, EntityManagerInterface $em): Response
     {
-        $platPrincipal = $categoryRepository->findOneBy(['slug' => 'plats']);
         $category = $categoryRepository->findOneBy(['slug' => $slug]);
     
         if (!$category) {
@@ -85,8 +84,6 @@ class HomeController extends AbstractController
         $em->flush();
     
         return $this->render('category/details.html.twig', [
-            // 'pates' => $pates,
-            'platPrincipal' => $platPrincipal,
             'recipes' => $recipes,
             'category' => $category
         
