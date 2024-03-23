@@ -20,20 +20,13 @@ class RecipeController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(RecipeRepository $recipeRepository, CategoryRepository $categoryRepository, EntityManagerInterface $em): Response
     {
-        // $platPrincipal = $categoryRepository->findOneBy(['slug' => 'plats']);
-        // $pates = $RecipeRepository->findOneBy(['slug' => 'pates-bolognaise']);
-        // $pates->setCategory($platPrincipal);
-        // $em->flush();
 
         $recipes = $recipeRepository->findWithDurationLowerThan(20);
         // $recipeTotalDuration = $recipeRepository->findTotalDuration();
 
-        // dd($recipes[0]->getCategory());
-
         return $this->render('admin/recipe/index.html.twig', [
             'recipes' => $recipes,
-            // 'recipeTotalDuration' => $recipeTotalDuration,
-            // 'pates' => $pates
+            // 'recipeTotalDuration' => $recipeTotalDuration
         ]);
     }
 
