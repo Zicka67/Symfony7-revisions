@@ -47,3 +47,8 @@ public function validate($value, Constraint $constraint)
         }
         
     }
+
+Bien penser a mettre le : cascade: ['remove'] sur la relation dans l'entité pour autoriser la suppression de la catégorie et des recettes associées
+
+  #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'category', cascade: ['remove'])]
+    private Collection $recipes;
