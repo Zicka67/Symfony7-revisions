@@ -33,7 +33,8 @@ class Category
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'category')]
+    //cascade: ['remove'] pour autoriser la suppression d'une catégory et des recettes associées
+    #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'category', cascade: ['remove'])]
     private Collection $recipes;
 
     public function __construct()
