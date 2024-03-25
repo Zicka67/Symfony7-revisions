@@ -16,7 +16,8 @@
         </td>
         <td>
             <p>
-                <img src="/images/recipes/{{ recipe.thumbnail }}" alt="tiramisu">
+                {# /images/recipes/{{ recipe.thumbnail }} #}
+                <img src="{{ vich_uploader_asset(recipe, 'thumbnailFile') }}" alt="tiramisu">
             </p>
         </td>
     </tr>
