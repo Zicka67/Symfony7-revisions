@@ -52,3 +52,7 @@ a {
 .btn-sm {
     width: 150px;
 }
+
+.large-button {
+    width: 120px;
+}
