@@ -4,12 +4,12 @@ namespace App\Entity;
 
 use App\Validator\BanWord;
 use Doctrine\DBAL\Types\Types;
-use App\Repository\RecipeRepository;
-use Vich\UploaderBundle\Entity\File;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\RecipeRepository;
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 // Pour éviter le doublon sur le nom et slug des recettes
@@ -37,10 +37,6 @@ class Recipe
     #[Assert\Length(min: 5)]
     private string $content = '';
 
-    // ici le mapping dépend de ce qu'on a défini dans vich_uploader.yaml
-    #[Vich\UploadableField(mapping: 'recipes', fileNameProperty: 'thumbnail')]
-    private ?File $thumbnailFile = null;
-
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -59,6 +55,13 @@ class Recipe
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $thumbnail = null;
+
+      // ici le mapping dépend de ce qu'on a défini dans vich_uploader.yaml
+      #[Vich\UploadableField(mapping: 'recipes', fileNameProperty: 'thumbnail')]
+      #[Assert\Image()]
+      private ?File $thumbnailFile = null;
+  
+
 
     public function getId(): ?int
     {
