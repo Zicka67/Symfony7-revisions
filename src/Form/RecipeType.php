@@ -50,10 +50,10 @@ class RecipeType extends AbstractType
             ])
             ->addEventListener(FormEvents::PRE_SUBMIT, $this->autoSlug(...))
             ->add('thumbnailFile', FileType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new Image()
-                ]
+                // 'mapped' => false,
+                // 'constraints' => [
+                //     new Image()
+                // ]
             ])
         ;
     }
