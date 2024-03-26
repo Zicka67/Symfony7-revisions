@@ -4,23 +4,26 @@ namespace App\Controller\Admin;
 
 use App\Entity\Recipe;
 use App\Form\RecipeType;
-use App\Repository\CategoryRepository;
 use App\Repository\RecipeRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 #[Route('/admin/recettes', name: 'admin.recipe.')]
+#[IsGranted('ROLE_ADMIN')]
 class RecipeController extends AbstractController
 {
 
     #[Route('/', name: 'index')]
     public function index(RecipeRepository $recipeRepository, CategoryRepository $categoryRepository, EntityManagerInterface $em): Response
     {
-
+        // $this->denyAccessUnlessGranted('ROLE_USER');
         $recipes = $recipeRepository->findWithDurationLowerThan(20);
         // $recipeTotalDuration = $recipeRepository->findTotalDuration();
 
@@ -61,15 +64,15 @@ class RecipeController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $recipe->setCreatedAt(new \DateTimeImmutable());
             $recipe->setUpdatedAt(new \DateTimeImmutable());
-            /** @var UploadedFile $file */
-            //On récupère le fichier
-            $file = $form->get('thumbnailFile')->getData();
-            //On génère un fichier
-            $filename = $recipe->getId() . '.' . $file->getClientOriginalExtension();
-            //Ondéplace avec la function move
-            $file->move($this->getParameter('kernel.project_dir') . '/public/images/recipes', $filename);
-            //on sauvegarde en base de donnée
-            $recipe->setThumbnail($filename);
+            // /** @var UploadedFile $file */
+            // //On récupère le fichier
+            // $file = $form->get('thumbnailFile')->getData();
+            // //On génère un fichier
+            // $filename = $recipe->getId() . '.' . $file->getClientOriginalExtension();
+            // //Ondéplace avec la function move
+            // $file->move($this->getParameter('kernel.project_dir') . '/public/images/recipes', $filename);
+            // //on sauvegarde en base de donnée
+            // $recipe->setThumbnail($filename);
             $em->flush();
 
             $this->addFlash('success', 'La recette a bien été modifiée');
